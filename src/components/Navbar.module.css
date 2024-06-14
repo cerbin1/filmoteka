@@ -1,0 +1,15 @@
+.navbarList {
+  display: flex;
+}
+
+.navbarList li {
+  list-style: none;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+.navbarList li:hover {
+  color: #f2652a;
+  border: 1px solid #f47c4a;
+  border-radius: 5px;;
+}

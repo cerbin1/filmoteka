@@ -1,7 +1,9 @@
+import classes from "./Navbar.module.css";
+
 function Navbar() {
   return (
     <div>
-      <ul>
+      <ul className={classes.navbarList}>
         <li>Filmy</li>
         <li>Seriale</li>
         <li>Ranking</li>
