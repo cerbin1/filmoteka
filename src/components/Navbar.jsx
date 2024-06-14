@@ -1,5 +1,8 @@
 import classes from "./Navbar.module.css";
 import SearchBar from "./SearchBar.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   return (
@@ -10,7 +13,11 @@ function Navbar() {
         <li>Ranking</li>
       </ul>
       <SearchBar />
-      <div className={classes.account}>Konto</div>
+
+      <div className={classes.account}>
+        <FontAwesomeIcon icon={faUser} />
+        <span className={classes.accountButtonText}>Konto</span>
+      </div>
     </div>
   );
 }
