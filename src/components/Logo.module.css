@@ -3,6 +3,8 @@
   font-weight: 600;
   padding: 1rem 3rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .textLogo a {
