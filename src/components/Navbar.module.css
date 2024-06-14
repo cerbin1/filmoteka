@@ -1,3 +1,6 @@
+.navbar {
+  display: flex;
+}
 .navbarList {
   display: flex;
 }
@@ -11,5 +14,5 @@
 .navbarList li:hover {
   color: #f2652a;
   border: 1px solid #f47c4a;
-  border-radius: 5px;;
+  border-radius: 5px;
 }

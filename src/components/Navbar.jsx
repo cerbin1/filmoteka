@@ -1,14 +1,15 @@
 import classes from "./Navbar.module.css";
+import SearchBar from "./SearchBar.jsx";
 
 function Navbar() {
   return (
-    <div>
+    <div className={classes.navbar}>
       <ul className={classes.navbarList}>
         <li>Filmy</li>
         <li>Seriale</li>
         <li>Ranking</li>
       </ul>
-      <input type="text" placeholder="Wyszukaj..." />
+      <SearchBar />
       <button>Konto</button>
     </div>
   );
