@@ -1,0 +1,11 @@
+.textLogo {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 1rem 3rem;
+  cursor: pointer;
+}
+
+.textLogo a {
+  text-decoration: none;
+  color: white;
+}
