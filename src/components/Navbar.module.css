@@ -16,3 +16,18 @@
   border: 1px solid #f47c4a;
   border-radius: 5px;
 }
+
+.account {
+  padding: 1rem 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.accountIcon {
+  padding-left: 0.5rem;
+}
+
+.account:hover {
+  color: #f2652a;
+}

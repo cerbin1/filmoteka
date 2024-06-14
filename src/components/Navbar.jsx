@@ -10,7 +10,7 @@ function Navbar() {
         <li>Ranking</li>
       </ul>
       <SearchBar />
-      <button>Konto</button>
+      <div className={classes.account}>Konto</div>
     </div>
   );
 }
