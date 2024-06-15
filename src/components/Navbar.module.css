@@ -14,8 +14,8 @@
 }
 
 .navbarList li:hover {
-  color: #f2652a;
-  border: 1px solid #f47c4a;
+  color: #f47c4a;
+  border: 1px solid #f2652a;
   border-radius: 5px;
 }
 
