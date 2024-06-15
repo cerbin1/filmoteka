@@ -1,0 +1,40 @@
+.heroContent {
+  display: flex;
+  align-items: center;
+  padding: 50px 20px;
+  background-color: #f5f5f5;
+  margin: 0 auto;
+  width: 60%;
+}
+
+.heroImage {
+  max-width: 600px;
+  margin-right: 20px;
+}
+
+.heroText {
+  flex: 1;
+}
+
+.heroContent h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.heroContent p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.heroContent button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #f2652a;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.heroContent button:hover {
+  background-color: #f47c4a;
+}
