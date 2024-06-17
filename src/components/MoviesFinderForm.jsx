@@ -24,6 +24,7 @@ function MoviesFinderForm({
         <input
           id="search"
           type="text"
+          placeholder="Wyszukaj po frazie/tytule..."
           onChange={onSearchParamChange}
           className={`${classes.searchInput} ${
             validationError ? classes.searchInputError : ""
