@@ -2,6 +2,7 @@ import { useState } from "react";
 import classes from "./MoviesFinder.module.css";
 import MoviesFinderForm from "./MoviesFinderForm";
 import MovieList from "./MovieList";
+import years from "../data/years";
 
 function MoviesFinder() {
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ function MoviesFinder() {
   }
 
   function onSelectedYearsChangeHandler(event) {
-    setSelectedYears(MoviesFinderForm.years[event.target.value]);
+    setSelectedYears(years[event.target.value]);
   }
 
   async function onSubmitHandler(event) {
