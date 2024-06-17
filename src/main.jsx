@@ -4,7 +4,7 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./router/RootLayout";
 import HeroContent from "./components/HeroContent";
-import Movies from "./components/Movies";
+import MoviesFinder from "./components/MoviesFinder";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/movies",
-        element: <Movies />,
+        element: <MoviesFinder />,
       },
     ],
   },
