@@ -37,12 +37,7 @@
     width: 100%;
     padding: 0;
   }
-/* 
-  .pagination{
-    text-align: left;
+  .pagination {
+    padding-bottom: 1rem;
   }
-
-  .pagination select{
-    padding: 0;
-  } */
 }

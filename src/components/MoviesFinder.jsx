@@ -109,6 +109,7 @@ function MoviesFinder() {
         <>
           <h2>Wszystkich filmów z podaną frazą: {responseData.totalResults}</h2>
 
+          <MovieList movies={responseData.movies} />
           {pagesCount > 1 && (
             <div className={classes.pagination}>
               <label htmlFor="page">Strona: </label>
@@ -132,7 +133,6 @@ function MoviesFinder() {
               </select>
             </div>
           )}
-          <MovieList movies={responseData.movies} />
         </>
       )}
     </div>
