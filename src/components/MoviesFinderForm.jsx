@@ -5,6 +5,7 @@ function MoviesFinderForm({
   onSubmit,
   onSearchParamChange,
   onSelectedYearsChange,
+  validationError,
 }) {
   return (
     <form onSubmit={onSubmit} className={classes.form}>
@@ -24,8 +25,15 @@ function MoviesFinderForm({
           id="search"
           type="text"
           onChange={onSearchParamChange}
-          className={classes.searchInput}
+          className={`${classes.searchInput} ${
+            validationError ? classes.searchInputError : ""
+          }`}
         />
+        {validationError && (
+          <p className={classes.searchInputErrorMessage}>
+            Podaj przynajmniej 3 znaki!
+          </p>
+        )}
       </div>
       <div className={`${classes.formGroup} ${classes.center}`}>
         <button className={classes.searchButton} type="submit">

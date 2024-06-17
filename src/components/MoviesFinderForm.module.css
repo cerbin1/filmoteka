@@ -55,3 +55,11 @@
 .searchButton:hover {
   background-color: #f47c4a;
 }
+
+.searchInputError {
+  border: 3px solid red;
+}
+
+.searchInputErrorMessage {
+  color: red;
+}

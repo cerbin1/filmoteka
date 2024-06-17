@@ -11,6 +11,8 @@ function MoviesFinder() {
   const [tooManyResults, setTooManyResults] = useState();
   const [selectedYears, setSelectedYears] = useState();
   const [searchParam, setSearchParam] = useState();
+  const [searchParamValidationError, setSearchParamValidationError] =
+    useState(false);
 
   function onSearchParamChangeHandler(event) {
     setSearchParam(event.target.value);
@@ -22,7 +24,10 @@ function MoviesFinder() {
 
   async function onSubmitHandler(event) {
     event.preventDefault();
-    if (!searchParam) return;
+    if (!validateSearchParam()) {
+      setSearchParamValidationError(true);
+      return;
+    }
     clearData();
     const data = await fetchData();
     const resultsFound = data.Response === "True";
@@ -35,6 +40,10 @@ function MoviesFinder() {
       }
     }
     setLoading(false);
+  }
+
+  function validateSearchParam() {
+    return searchParam !== undefined && searchParam.length >= 3;
   }
 
   function extractSearchResults(data) {
@@ -54,6 +63,7 @@ function MoviesFinder() {
     setLoading(true);
     setResultsFound(false);
     setTooManyResults(false);
+    setSearchParamValidationError(false);
   }
 
   async function fetchData() {
@@ -71,6 +81,7 @@ function MoviesFinder() {
         onSubmit={onSubmitHandler}
         onSearchParamChange={onSearchParamChangeHandler}
         onSelectedYearsChange={onSelectedYearsChangeHandler}
+        validationError={searchParamValidationError}
       />
 
       {loading && <h1>Ładowanie...</h1>}
