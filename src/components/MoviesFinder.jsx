@@ -1,6 +1,7 @@
 import { useState } from "react";
 import classes from "./MoviesFinder.module.css";
 import MoviesFinderForm from "./MoviesFinderForm";
+import MovieList from "./MovieList";
 
 function MoviesFinder() {
   const [loading, setLoading] = useState(false);
@@ -69,14 +70,7 @@ function MoviesFinder() {
 
       {!loading && !resultsFound && <h1>Nie znaleziono filmów</h1>}
 
-      {resultsFound && (
-        <div>
-          <h1>Wyszukano {results.length} filmów</h1>
-          {results.map((movie) => {
-            return <div key={movie.imdbID}>{movie.Title}</div>;
-          })}
-        </div>
-      )}
+      {resultsFound && <MovieList movies={results} />}
     </div>
   );
 }
