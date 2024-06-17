@@ -33,9 +33,9 @@ function MoviesFinder() {
   }
 
   function extractSearchResults(data) {
-    const movies = data.Search;
+    let movies = data.Search;
     if (selectedYears && selectedYears.key != 0) {
-      movies.filter((movie) => {
+      movies = movies.filter((movie) => {
         return (
           movie.Year >= selectedYears.values.start &&
           movie.Year <= selectedYears.values.end
