@@ -4,3 +4,9 @@
   background-color: black;
   color: white;
 }
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+}

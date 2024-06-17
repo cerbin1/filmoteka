@@ -38,3 +38,16 @@
 .account:hover {
   color: #f2652a;
 }
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+  .navbarList {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  .navbarList li {
+    padding: 1rem 1.5rem;
+  }
+}

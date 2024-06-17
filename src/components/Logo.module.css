@@ -16,3 +16,9 @@
 .textLogo a:hover {
   text-shadow: 2px 2px 5px #f2652a;
 }
+
+@media screen and (max-width: 768px) {
+  .textLogo {
+    margin: 0 auto;
+  }
+}

@@ -17,3 +17,9 @@
   color: #f47c4a;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .searchBar {
+    padding: 0;
+  }
+}
