@@ -8,6 +8,7 @@ function MoviesFinder() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState();
   const [resultsFound, setResultsFound] = useState();
+  const [tooManyResults, setTooManyResults] = useState();
   const [selectedYears, setSelectedYears] = useState();
   const [searchParam, setSearchParam] = useState();
 
@@ -28,6 +29,10 @@ function MoviesFinder() {
     if (resultsFound) {
       setResultsFound(resultsFound);
       extractSearchResults(data);
+    } else {
+      if (data.Error === "Too many results.") {
+        setTooManyResults(true);
+      }
     }
     setLoading(false);
   }
@@ -48,6 +53,7 @@ function MoviesFinder() {
   function clearData() {
     setLoading(true);
     setResultsFound(false);
+    setTooManyResults(false);
   }
 
   async function fetchData() {
@@ -69,7 +75,12 @@ function MoviesFinder() {
 
       {loading && <h1>Ładowanie...</h1>}
 
-      {!loading && !resultsFound && <h1>Nie znaleziono filmów</h1>}
+      {!loading && !resultsFound && !tooManyResults && (
+        <h1>Nie znaleziono filmów</h1>
+      )}
+      {!loading && !resultsFound && tooManyResults && (
+        <h1>Za dużo wyników. Spróbuj bardziej sprecyzować tytuł</h1>
+      )}
 
       {resultsFound && <MovieList id="movies" movies={results} />}
     </div>
