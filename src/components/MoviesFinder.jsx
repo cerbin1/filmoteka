@@ -49,7 +49,9 @@ function MoviesFinder() {
   }
 
   async function fetchData() {
-    let url = `https://www.omdbapi.com/?apikey=9cb365b9&type=movie&s=${searchParam}`;
+    let url = `https://www.omdbapi.com/?apikey=${
+      import.meta.env.VITE_OMDB_API_KEY
+    }&type=movie&s=${searchParam}`;
     const response = await fetch(url);
     return await response.json();
   }
