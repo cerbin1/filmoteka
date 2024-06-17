@@ -93,7 +93,7 @@ function MoviesFinder() {
         <h1>Za dużo wyników. Spróbuj bardziej sprecyzować tytuł</h1>
       )}
 
-      {resultsFound && <MovieList id="movies" movies={results} />}
+      {resultsFound && <MovieList movies={results} />}
     </div>
   );
 }
