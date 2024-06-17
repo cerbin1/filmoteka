@@ -63,3 +63,20 @@
 .searchInputErrorMessage {
   color: red;
 }
+
+@media screen and (max-width: 768px) {
+  .formGroup {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0.4rem 0;
+  }
+
+  .searchButton {
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 90%;
+  }
+}
