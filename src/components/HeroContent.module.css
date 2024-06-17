@@ -28,7 +28,7 @@
 
 .heroContent button {
   padding: 10px 20px;
-  font-size: 1em;
+  font-size: 1rem;
   background-color: #f2652a;
   border: none;
   color: white;
@@ -37,4 +37,36 @@
 
 .heroContent button:hover {
   background-color: #f47c4a;
+}
+
+@media screen and (max-width: 768px) {
+  .heroContent {
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .heroImage {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .heroContent h1 {
+    padding: 1rem 0 0 0;
+    margin: 0;
+  }
+
+  .heroContent p {
+    padding: 0 1rem;
+  }
+
+  .heroContent button {
+    padding: 1.5rem 2rem;
+    border-radius: 5px;
+    display: block;
+    width: 80%;
+    margin: 1rem auto;
+  }
 }
