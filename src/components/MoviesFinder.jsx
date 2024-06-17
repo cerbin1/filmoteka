@@ -11,8 +11,10 @@ function MoviesFinder() {
   const [tooManyResults, setTooManyResults] = useState();
   const [selectedYears, setSelectedYears] = useState();
   const [searchParam, setSearchParam] = useState();
+  const [selectedPage, setSelectedPage] = useState(1);
   const [searchParamValidationError, setSearchParamValidationError] =
     useState(false);
+  const pagesCount = Math.ceil(responseData.totalResults / 10);
 
   function onSearchParamChangeHandler(event) {
     setSearchParam(event.target.value);
@@ -22,14 +24,14 @@ function MoviesFinder() {
     setSelectedYears(years[event.target.value]);
   }
 
-  async function onSubmitHandler(event) {
-    event.preventDefault();
-    if (!validateSearchParam()) {
-      setSearchParamValidationError(true);
-      return;
-    }
+  async function onPageChangeHandler(event) {
+    setSelectedPage(event.target.value);
+    fetchResultsFromApi(event.target.value);
+  }
+
+  async function fetchResultsFromApi(page) {
     clearData();
-    const data = await fetchData();
+    const data = await fetchData(page);
     const resultsFound = data.Response === "True";
     if (resultsFound) {
       setResultsFound(resultsFound);
@@ -40,6 +42,16 @@ function MoviesFinder() {
       }
     }
     setLoading(false);
+  }
+
+  async function onSubmitHandler(event) {
+    event.preventDefault();
+    if (!validateSearchParam()) {
+      setSearchParamValidationError(true);
+      return;
+    }
+    setSelectedPage(1);
+    fetchResultsFromApi();
   }
 
   function validateSearchParam() {
@@ -66,10 +78,10 @@ function MoviesFinder() {
     setSearchParamValidationError(false);
   }
 
-  async function fetchData() {
+  async function fetchData(page = 1) {
     let url = `https://www.omdbapi.com/?apikey=${
       import.meta.env.VITE_OMDB_API_KEY
-    }&type=movie&s=${searchParam}`;
+    }&type=movie&s=${searchParam}&page=${page}`;
     const response = await fetch(url);
     return await response.json();
   }
@@ -94,10 +106,34 @@ function MoviesFinder() {
       )}
 
       {resultsFound && (
-        <MovieList
-          movies={responseData.movies}
-          totalResults={responseData.totalResults}
-        />
+        <>
+          <h2>Znaleziono {responseData.totalResults} filmów</h2>
+
+          {pagesCount > 1 && (
+            <div className={classes.pagination}>
+              <label htmlFor="page">Strona: </label>
+              <select
+                name="page"
+                id="page"
+                value={selectedPage}
+                onChange={(event) => {
+                  onPageChangeHandler(event);
+                }}
+              >
+                {[...Array(pagesCount).keys()].map((pageIndex) => (
+                  <option
+                    key={pageIndex}
+                    value={pageIndex + 1}
+                    selected={pageIndex + 1 === selectedPage}
+                  >
+                    {pageIndex + 1}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+          <MovieList movies={responseData.movies} />
+        </>
       )}
     </div>
   );

@@ -1,5 +1,4 @@
 .moviesContainer {
-  /* display: flex; */
   text-align: center;
   align-items: center;
   padding: 50px 20px;
@@ -10,4 +9,21 @@
 
 .moviesContainer h1 {
   cursor: default;
+}
+
+.moviesContainer h2 {
+  cursor: default;
+  margin-bottom: 0;
+}
+
+.pagination {
+  padding-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.pagination select {
+  font-size: inherit;
+  padding: 0.5rem;
+  border: 1px solid #f2652a;
+  border-radius: 5px;
 }
