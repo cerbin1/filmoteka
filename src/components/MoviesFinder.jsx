@@ -99,15 +99,15 @@ function MoviesFinder() {
       {loading && <h1>Ładowanie...</h1>}
 
       {!loading && !resultsFound && !tooManyResults && (
-        <h1>Nie znaleziono filmów</h1>
+        <h1>Nie znaleziono żadnego filmu.</h1>
       )}
       {!loading && !resultsFound && tooManyResults && (
-        <h1>Za dużo wyników. Spróbuj bardziej sprecyzować tytuł</h1>
+        <h1>Za dużo wyników. Spróbuj bardziej sprecyzować tytuł.</h1>
       )}
 
       {resultsFound && (
         <>
-          <h2>Znaleziono {responseData.totalResults} filmów</h2>
+          <h2>Wszystkich filmów z podaną frazą: {responseData.totalResults}</h2>
 
           {pagesCount > 1 && (
             <div className={classes.pagination}>
