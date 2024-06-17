@@ -27,3 +27,7 @@
   border: 1px solid #f2652a;
   border-radius: 5px;
 }
+
+.pagination option:checked {
+  background-color: #f2652a;
+}
