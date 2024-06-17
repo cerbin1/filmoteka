@@ -6,7 +6,7 @@ import years from "../data/years";
 
 function MoviesFinder() {
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState();
+  const [responseData, setResponseData] = useState({});
   const [resultsFound, setResultsFound] = useState();
   const [tooManyResults, setTooManyResults] = useState();
   const [selectedYears, setSelectedYears] = useState();
@@ -33,7 +33,7 @@ function MoviesFinder() {
     const resultsFound = data.Response === "True";
     if (resultsFound) {
       setResultsFound(resultsFound);
-      extractSearchResults(data);
+      extractResponseData(data);
     } else {
       if (data.Error === "Too many results.") {
         setTooManyResults(true);
@@ -46,7 +46,7 @@ function MoviesFinder() {
     return searchParam !== undefined && searchParam.length >= 3;
   }
 
-  function extractSearchResults(data) {
+  function extractResponseData(data) {
     let movies = data.Search;
     if (selectedYears && selectedYears.key != 0) {
       movies = movies.filter((movie) => {
@@ -56,7 +56,7 @@ function MoviesFinder() {
         );
       });
     }
-    setResults(movies);
+    setResponseData({ movies: movies, totalResults: data.totalResults });
   }
 
   function clearData() {
@@ -93,7 +93,12 @@ function MoviesFinder() {
         <h1>Za dużo wyników. Spróbuj bardziej sprecyzować tytuł</h1>
       )}
 
-      {resultsFound && <MovieList movies={results} />}
+      {resultsFound && (
+        <MovieList
+          movies={responseData.movies}
+          totalResults={responseData.totalResults}
+        />
+      )}
     </div>
   );
 }
