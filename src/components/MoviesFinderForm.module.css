@@ -1,0 +1,57 @@
+.form {
+  font-size: 1.4rem;
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.formGroup {
+  padding: 1rem 0;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.formGroup select {
+  font-size: inherit;
+  padding: 0.5rem;
+  border: 1px solid #f2652a;
+  border-radius: 5px;
+}
+
+.formGroup option {
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid #f2652a;
+}
+
+.formGroup option:checked {
+  background-color: #f2652a;
+}
+
+.searchInput {
+  font-size: inherit;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #f2652a;
+}
+
+.searchInput:focus {
+  outline: none;
+  border: 1px solid #f2652a;
+}
+
+.searchButton {
+  font-size: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #f2652a;
+  cursor: pointer;
+  background-color: #f2652a;
+  width: 50%;
+}
+
+.searchButton:hover {
+  background-color: #f47c4a;
+}

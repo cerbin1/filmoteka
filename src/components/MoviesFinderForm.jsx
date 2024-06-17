@@ -1,3 +1,5 @@
+import classes from "./MoviesFinderForm.module.css";
+
 const years = [
   { key: 0, text: "Wszystkie" },
   { key: 1, values: { start: 2020, end: 2030 }, text: "2020+" },
@@ -16,9 +18,9 @@ function MoviesFinderForm({
   onSelectedYearsChange,
 }) {
   return (
-    <form onSubmit={onSubmit} action="">
-      <div>
-        <label htmlFor="year">Lata</label>
+    <form onSubmit={onSubmit} className={classes.form}>
+      <div className={classes.formGroup}>
+        <label htmlFor="year">Lata: </label>
         <select name="year" id="year" onChange={onSelectedYearsChange}>
           {years.map((year) => (
             <option key={year.key} value={year.key}>
@@ -27,9 +29,20 @@ function MoviesFinderForm({
           ))}
         </select>
       </div>
-
-      <input type="text" onChange={onSearchParamChange} />
-      <button type="submit">Szukaj</button>
+      <div className={classes.formGroup}>
+        <label htmlFor="search">Tytuł: </label>
+        <input
+          id="search"
+          type="text"
+          onChange={onSearchParamChange}
+          className={classes.searchInput}
+        />
+      </div>
+      <div className={`${classes.formGroup} ${classes.center}`}>
+        <button className={classes.searchButton} type="submit">
+          Szukaj
+        </button>
+      </div>
     </form>
   );
 }
