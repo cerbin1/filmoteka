@@ -1,0 +1,45 @@
+.movieDetails {
+  display: flex;
+  border: 1px solid #f2652a;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  text-align: left;
+  cursor: default;
+  font-size: 1.2rem;
+}
+
+.moviePoster {
+  width: 200px;
+}
+
+.movieInfo h2 {
+  margin-bottom: 0.2rem;
+}
+
+.movieInfo h2:hover {
+  text-shadow: 2px 2px 5px #f2652a;
+}
+
+.movieInfo {
+  padding: 0 2rem;
+}
+
+.movieInfo p {
+  color: grey;
+  margin-top: 0;
+}
+
+.movieInfo a {
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #f2652a;
+}
+
+.movieInfo a:hover {
+  background-color: #f47c4a;
+}

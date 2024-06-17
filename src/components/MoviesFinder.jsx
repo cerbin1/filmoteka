@@ -71,7 +71,7 @@ function MoviesFinder() {
 
       {!loading && !resultsFound && <h1>Nie znaleziono filmów</h1>}
 
-      {resultsFound && <MovieList movies={results} />}
+      {resultsFound && <MovieList id="movies" movies={results} />}
     </div>
   );
 }
