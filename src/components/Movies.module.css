@@ -1,0 +1,12 @@
+.moviesContainer {
+  /* display: flex; */
+  align-items: center;
+  padding: 50px 20px;
+  background-color: #f5f5f5;
+  margin: 0 auto;
+  width: 60%;
+}
+
+.moviesContainer h1 {
+  cursor: default;
+}

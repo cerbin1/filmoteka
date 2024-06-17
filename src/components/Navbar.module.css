@@ -13,6 +13,11 @@
   border: 1px solid transparent;
 }
 
+.navbarList a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .navbarList li:hover {
   color: #f47c4a;
   border: 1px solid #f2652a;

@@ -1,6 +1,7 @@
 import classes from "./Navbar.module.css";
 import SearchBar from "./SearchBar.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,7 +9,9 @@ function Navbar() {
   return (
     <div className={classes.navbar}>
       <ul className={classes.navbarList}>
-        <li>Filmy</li>
+        <Link to="/movies">
+          <li>Filmy</li>
+        </Link>
         <li>Seriale</li>
         <li>Ranking</li>
       </ul>
