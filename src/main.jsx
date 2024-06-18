@@ -5,6 +5,8 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./router/RootLayout";
 import HeroContent from "./components/HeroContent";
 import MoviesFinder from "./components/MoviesFinder";
+import MovieDetails from "./components/MovieDetails";
+import { loader as movieDetailsLoader } from "./components/loaders/MovieDetailsLoader";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,11 @@ const router = createBrowserRouter([
       {
         path: "/movies",
         element: <MoviesFinder />,
+      },
+      {
+        path: "/movies/:id",
+        element: <MovieDetails />,
+        loader: movieDetailsLoader,
       },
     ],
   },

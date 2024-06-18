@@ -14,7 +14,7 @@ function MovieListItem({ movie }) {
       <div className={classes.movieInfo}>
         <h2>{movie.Title}</h2>
         <p>Rok: {movie.Year}</p>
-        <Link to="todo">Szczegóły</Link>
+        <Link to={`/movies/${movie.imdbID}`}>Szczegóły</Link>
       </div>
     </div>
   );
