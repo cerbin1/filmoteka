@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import test from "../assets/hero.jpg";
 import classes from "./HeroContent.module.css";
 
@@ -18,7 +19,9 @@ function HeroContent() {
           ulubionych, zapisywać recenzje i otrzymywać rekomendacje dopasowane do
           Twojego gustu.
         </p>
-        <button>Szukaj teraz</button>
+        <Link to="/movies">
+          <button>Szukaj teraz</button>
+        </Link>
       </div>
     </section>
   );
