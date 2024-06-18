@@ -12,7 +12,9 @@ function Navbar() {
         <Link to="/movies">
           <li>Filmy</li>
         </Link>
-        <li>Seriale</li>
+        <Link to="/series">
+          <li>Seriale</li>
+        </Link>
         <li>Ranking</li>
       </ul>
       <SearchBar />

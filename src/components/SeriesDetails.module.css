@@ -1,0 +1,56 @@
+.container {
+  width: 60%;
+  margin: 0 auto;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.title {
+  border-bottom: 2px solid #f2652a;
+  display: flex;
+  text-align: left;
+  font-size: 1.5rem;
+}
+
+.title h1 {
+  color: #f47c4a;
+  cursor: default;
+}
+
+.section {
+  border-bottom: 2px solid #f2652a;
+}
+
+.section h2 {
+  color: #f47c4a;
+  cursor: default;
+}
+
+.section p {
+  margin: 0.6rem 0;
+}
+
+.poster {
+  margin: 1rem;
+  max-width: 200px;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+
+  .title {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+
+  .title h1 {
+    margin: 0.5rem 0 0 0;
+    padding: 0;
+  }
+
+  .poster {
+    margin: 0 auto 0.5rem auto;
+  }
+}

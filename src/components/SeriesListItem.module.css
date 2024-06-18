@@ -1,0 +1,62 @@
+.seriesListItem {
+  display: flex;
+  border: 1px solid #f2652a;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  margin: 1rem 0;
+  text-align: left;
+  cursor: default;
+  font-size: 1.2rem;
+}
+
+.seriesPoster {
+  width: 200px;
+}
+
+.seriesInfo h2 {
+  margin-bottom: 0.2rem;
+}
+
+.seriesInfo h2:hover {
+  text-shadow: 2px 2px 5px #f2652a;
+}
+
+.seriesInfo {
+  padding: 0 2rem;
+}
+
+.seriesInfo p {
+  color: grey;
+  margin-top: 0;
+}
+
+.seriesInfo a {
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  background-color: #f2652a;
+}
+
+.seriesInfo a:hover {
+  background-color: #f47c4a;
+}
+
+@media screen and (max-width: 768px) {
+  .seriesListItem {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .seriesInfo {
+    padding: 0;
+  }
+  .seriesInfo p {
+    margin-bottom: 0.5rem;
+  }
+  .seriesInfo a {
+    margin: 0;
+  }
+}
