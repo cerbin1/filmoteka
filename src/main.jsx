@@ -9,6 +9,7 @@ import SeriesFinder from "./components/SeriesFinder";
 import MovieDetails from "./components/MovieDetails";
 import SeriesDetails from "./components/SeriesDetails";
 import { loader as movieDetailsLoader } from "./components/loaders/MovieDetailsLoader";
+import Ranking from "./components/Ranking";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         path: "/series/:id",
         element: <SeriesDetails />,
         loader: movieDetailsLoader,
+      },
+      {
+        path: "/ranking",
+        element: <Ranking />,
       },
     ],
   },

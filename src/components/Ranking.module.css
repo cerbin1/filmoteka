@@ -1,0 +1,25 @@
+.container {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+
+  .title {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+
+  .title h1 {
+    margin: 0.5rem 0 0 0;
+    padding: 0;
+  }
+
+  .poster {
+    margin: 0 auto 0.5rem auto;
+  }
+}

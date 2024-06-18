@@ -15,7 +15,9 @@ function Navbar() {
         <Link to="/series">
           <li>Seriale</li>
         </Link>
-        <li>Ranking</li>
+        <Link to="/ranking">
+          <li>Ranking</li>
+        </Link>
       </ul>
       <SearchBar />
 
