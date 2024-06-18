@@ -10,6 +10,7 @@ import MovieDetails from "./components/MovieDetails";
 import SeriesDetails from "./components/SeriesDetails";
 import { loader as movieDetailsLoader } from "./components/loaders/MovieDetailsLoader";
 import Ranking from "./components/Ranking";
+import Account from "./components/Account";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "/ranking",
         element: <Ranking />,
+      },
+      {
+        path: "/account",
+        element: <Account />,
       },
     ],
   },

@@ -23,7 +23,7 @@ function Navbar() {
 
       <div className={classes.account}>
         <FontAwesomeIcon icon={faUser} />
-        <span className={classes.accountButtonText}>Konto</span>
+        <Link to="/account"><span className={classes.accountButtonText}>Konto</span></Link>
       </div>
     </div>
   );

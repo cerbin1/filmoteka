@@ -1,0 +1,27 @@
+.container {
+  text-align: center;
+}
+
+.container button {
+  font-size: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #f2652a;
+  cursor: pointer;
+  background-color: #f2652a;
+  display: block;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 10%;
+  color: white;
+}
+
+.container button:hover {
+  background-color: #f47c4a;
+}
+
+@media screen and (max-width: 768px) {
+  .container button {
+    width: 50%;
+  }
+}

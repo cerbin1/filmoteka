@@ -31,6 +31,11 @@
   align-items: center;
 }
 
+.account a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .accountButtonText {
   padding-left: 0.5rem;
 }
