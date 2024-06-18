@@ -1,9 +1,9 @@
-import classes from "./MovieDetails.module.css";
+import classes from "./MovieListItem.module.css";
 import { Link } from "react-router-dom";
 
-function MovieDetails({ movie }) {
+function MovieListItem({ movie }) {
   return (
-    <div className={classes.movieDetails}>
+    <div className={classes.movieListItem}>
       {movie.Poster !== "N/A" && (
         <img
           src={movie.Poster}
@@ -20,4 +20,4 @@ function MovieDetails({ movie }) {
   );
 }
 
-export default MovieDetails;
+export default MovieListItem;

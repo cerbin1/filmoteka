@@ -1,10 +1,10 @@
-import MovieDetails from "./MovieDetails";
+import MovieListItem from "./MovieListItem";
 
 function MovieList({ movies }) {
   return (
     <>
       {movies.map((movie) => (
-        <MovieDetails movie={movie} key={movie.imdbID} />
+        <MovieListItem movie={movie} key={movie.imdbID} />
       ))}
     </>
   );
