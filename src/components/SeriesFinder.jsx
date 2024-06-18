@@ -107,7 +107,9 @@ function SeriesFinder() {
 
       {resultsFound && (
         <>
-          <h2>Wszystkich seriali z podaną frazą: {responseData.totalResults}</h2>
+          <h2>
+            Wszystkich seriali z podaną frazą: {responseData.totalResults}
+          </h2>
 
           <SeriesList series={responseData.series} />
           {pagesCount > 1 && (
@@ -116,7 +118,7 @@ function SeriesFinder() {
               <select
                 name="page"
                 id="page"
-                value={selectedPage}
+                defaultValue={selectedPage}
                 onChange={(event) => {
                   onPageChangeHandler(event);
                 }}
@@ -125,7 +127,7 @@ function SeriesFinder() {
                   <option
                     key={pageIndex}
                     value={pageIndex + 1}
-                    selected={pageIndex + 1 === selectedPage}
+                    defaultValue={pageIndex + 1 === selectedPage}
                   >
                     {pageIndex + 1}
                   </option>

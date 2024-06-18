@@ -116,7 +116,7 @@ function MoviesFinder() {
               <select
                 name="page"
                 id="page"
-                value={selectedPage}
+                defaultValue={selectedPage}
                 onChange={(event) => {
                   onPageChangeHandler(event);
                 }}
@@ -125,7 +125,7 @@ function MoviesFinder() {
                   <option
                     key={pageIndex}
                     value={pageIndex + 1}
-                    selected={pageIndex + 1 === selectedPage}
+                    defaultValue={pageIndex + 1 === selectedPage}
                   >
                     {pageIndex + 1}
                   </option>
