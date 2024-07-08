@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 
 function RankingMovieDetails({ id, number }) {
   const [data, setData] = useState({});
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
 
   const fetchData = useCallback(
     async function fetchData() {
@@ -19,6 +16,10 @@ function RankingMovieDetails({ id, number }) {
     },
     [id]
   );
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   return (
     <>
