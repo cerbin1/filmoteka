@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import classes from "./RankingMovieDetails.module.css";
 import { Link } from "react-router-dom";
 
@@ -6,16 +6,19 @@ function RankingMovieDetails({ id, number }) {
   const [data, setData] = useState({});
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
-  async function fetchData() {
-    const url = `https://www.omdbapi.com/?apikey=${
-      import.meta.env.VITE_OMDB_API_KEY
-    }&i=${id}`;
-    const response = await fetch(url);
-    const responseJson = await response.json();
-    setData(responseJson);
-  }
+  const fetchData = useCallback(
+    async function fetchData() {
+      const url = `https://www.omdbapi.com/?apikey=${
+        import.meta.env.VITE_OMDB_API_KEY
+      }&i=${id}`;
+      const response = await fetch(url);
+      const responseJson = await response.json();
+      setData(responseJson);
+    },
+    [id]
+  );
 
   return (
     <>
