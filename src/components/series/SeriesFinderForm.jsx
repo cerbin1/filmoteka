@@ -1,7 +1,7 @@
-import classes from "./MoviesFinderForm.module.css";
-import years from "../data/years";
+import classes from "./SeriesFinderForm.module.css";
+import years from "../../data/years";
 
-function MoviesFinderForm({
+function SeriesFinderForm({
   onSubmit,
   onSearchParamChange,
   onSelectedYearsChange,
@@ -44,4 +44,4 @@ function MoviesFinderForm({
     </form>
   );
 }
-export default MoviesFinderForm;
+export default SeriesFinderForm;

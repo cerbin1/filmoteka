@@ -1,10 +1,10 @@
 import { useState } from "react";
-import classes from "./MoviesFinder.module.css";
-import MoviesFinderForm from "./MoviesFinderForm";
-import MovieList from "./MovieList";
-import years from "../data/years";
+import classes from "./SeriesFinder.module.css";
+import SeriesFinderForm from "./SeriesFinderForm";
+import SeriesList from "./SeriesList";
+import years from "../../data/years";
 
-function MoviesFinder() {
+function SeriesFinder() {
   const [loading, setLoading] = useState(false);
   const [responseData, setResponseData] = useState({});
   const [resultsFound, setResultsFound] = useState();
@@ -59,16 +59,16 @@ function MoviesFinder() {
   }
 
   function extractResponseData(data) {
-    let movies = data.Search;
+    let series = data.Search;
     if (selectedYears && selectedYears.key != 0) {
-      movies = movies.filter((movie) => {
+      series = series.filter((serie) => {
         return (
-          movie.Year >= selectedYears.values.start &&
-          movie.Year <= selectedYears.values.end
+          serie.Year >= selectedYears.values.start &&
+          serie.Year <= selectedYears.values.end
         );
       });
     }
-    setResponseData({ movies: movies, totalResults: data.totalResults });
+    setResponseData({ series: series, totalResults: data.totalResults });
   }
 
   function clearData() {
@@ -81,15 +81,15 @@ function MoviesFinder() {
   async function fetchData(page = 1) {
     let url = `https://www.omdbapi.com/?apikey=${
       import.meta.env.VITE_OMDB_API_KEY
-    }&type=movie&s=${searchParam}&page=${page}`;
+    }&type=series&s=${searchParam}&page=${page}`;
     const response = await fetch(url);
     return await response.json();
   }
 
   return (
-    <div className={classes.moviesContainer}>
-      <h1>Wyszukiwarka filmów</h1>
-      <MoviesFinderForm
+    <div className={classes.seriesContainer}>
+      <h1>Wyszukiwarka seriali</h1>
+      <SeriesFinderForm
         onSubmit={onSubmitHandler}
         onSearchParamChange={onSearchParamChangeHandler}
         onSelectedYearsChange={onSelectedYearsChangeHandler}
@@ -99,7 +99,7 @@ function MoviesFinder() {
       {loading && <h1>Ładowanie...</h1>}
 
       {!loading && !resultsFound && !tooManyResults && (
-        <h1>Nie znaleziono żadnego filmu.</h1>
+        <h1>Nie znaleziono żadnego serialu.</h1>
       )}
       {!loading && !resultsFound && tooManyResults && (
         <h1>Za dużo wyników. Spróbuj bardziej sprecyzować tytuł.</h1>
@@ -107,9 +107,11 @@ function MoviesFinder() {
 
       {resultsFound && (
         <>
-          <h2>Wszystkich filmów z podaną frazą: {responseData.totalResults}</h2>
+          <h2>
+            Wszystkich seriali z podaną frazą: {responseData.totalResults}
+          </h2>
 
-          <MovieList movies={responseData.movies} />
+          <SeriesList series={responseData.series} />
           {pagesCount > 1 && (
             <div className={classes.pagination}>
               <label htmlFor="page">Strona: </label>
@@ -138,4 +140,4 @@ function MoviesFinder() {
     </div>
   );
 }
-export default MoviesFinder;
+export default SeriesFinder;

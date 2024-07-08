@@ -4,13 +4,13 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./router/RootLayout";
 import HeroContent from "./components/HeroContent";
-import MoviesFinder from "./components/MoviesFinder";
-import SeriesFinder from "./components/SeriesFinder";
-import MovieDetails from "./components/MovieDetails";
-import SeriesDetails from "./components/SeriesDetails";
+import MoviesFinder from "./components/movies/MoviesFinder";
+import SeriesFinder from "./components/series/SeriesFinder";
+import MovieDetails from "./components/movies/MovieDetails";
+import SeriesDetails from "./components/series/SeriesDetails";
 import { loader as movieDetailsLoader } from "./components/loaders/MovieDetailsLoader";
-import Ranking from "./components/Ranking";
-import Account from "./components/Account";
+import Ranking from "./components/ranking/Ranking";
+import Account from "./components/account/Account";
 
 const router = createBrowserRouter([
   {

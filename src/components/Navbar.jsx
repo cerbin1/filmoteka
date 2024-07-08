@@ -1,5 +1,5 @@
 import classes from "./Navbar.module.css";
-import SearchBar from "./SearchBar.jsx";
+import SearchBar from "./search/SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
@@ -23,7 +23,9 @@ function Navbar() {
 
       <div className={classes.account}>
         <FontAwesomeIcon icon={faUser} />
-        <Link to="/account"><span className={classes.accountButtonText}>Konto</span></Link>
+        <Link to="/account">
+          <span className={classes.accountButtonText}>Konto</span>
+        </Link>
       </div>
     </div>
   );
