@@ -19,7 +19,11 @@ function Ranking() {
     <div className={classes.container}>
       <h1>Top 10 filmów</h1>
       {top10MoviesIds.map((id) => (
-        <RankingMovieDetails key={id} number={top10MoviesIds.indexOf(id) + 1} id={id} />
+        <RankingMovieDetails
+          key={id}
+          number={top10MoviesIds.indexOf(id) + 1}
+          id={id}
+        />
       ))}
     </div>
   );
