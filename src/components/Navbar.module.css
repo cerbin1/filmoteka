@@ -1,58 +1,35 @@
-.navbar {
-  display: flex;
-  align-items: center;
-}
-.navbarList {
-  display: flex;
-}
-
-.navbarList li {
-  list-style: none;
-  padding: 1rem 2rem;
+.navbar { display: flex; align-items: center; flex-wrap: wrap; }
+.navbarList { display: flex; padding: 0; margin: 0; }
+.navbarList li { list-style: none; padding: 0; }
+.navbarList a { display: block; padding: 1rem 1.25rem; text-decoration: none; color: inherit; border: 1px solid transparent; border-radius: 5px; }
+.navbarList a:hover, .navbarList a[aria-current="page"] { color: #ffb58f; border-color: var(--color-brand); }
+.account { padding: 1rem 1.25rem; cursor: pointer; display: flex; align-items: center; }
+.account a { text-decoration: none; color: inherit; }
+.accountButtonText { padding-left: .5rem; }
+.account:hover { color: var(--color-brand); }
+.languageButton {
+  min-width: 2.75rem;
+  margin: 0 .75rem;
+  padding: .45rem .7rem;
+  border: 1px solid rgb(255 181 143 / 55%);
+  border-radius: 999px;
+  color: #ffb58f;
+  background: transparent;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 1;
   cursor: pointer;
-  border: 1px solid transparent;
 }
-
-.navbarList a {
-  text-decoration: none;
-  color: inherit;
+.languageButton:hover {
+  border-color: #ffb58f;
+  color: #171717;
+  background: #ffb58f;
 }
-
-.navbarList li:hover {
-  color: #f47c4a;
-  border: 1px solid #f2652a;
-  border-radius: 5px;
-}
-
-.account {
-  padding: 1rem 2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-.account a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.accountButtonText {
-  padding-left: 0.5rem;
-}
-
-.account:hover {
-  color: #f2652a;
-}
-
-@media screen and (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-  }
-  .navbarList {
-    max-width: 100%;
-    margin: 0 auto;
-  }
-  .navbarList li {
-    padding: 1rem 1.5rem;
-  }
+.languageButton:focus-visible { outline-color: #ffb58f; }
+@media (max-width: 768px) {
+  .navbar { flex-direction: column; }
+  .navbarList { max-width: 100%; margin: 0 auto; }
+  .navbarList a { padding: .8rem 1rem; }
+  .languageButton { margin: .5rem auto 1rem; }
 }

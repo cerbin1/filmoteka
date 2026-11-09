@@ -2,14 +2,18 @@
   display: flex;
   align-items: center;
   padding: 50px 20px;
-  background-color: #f5f5f5;
+  background-color: var(--color-surface);
   margin: 0 auto;
-  width: 60%;
+  width: min(100% - 2rem, 1200px);
+  gap: 2rem;
+  border-radius: 12px;
 }
 
 .heroImage {
-  max-width: 600px;
-  margin-right: 20px;
+  width: min(50%, 600px);
+  height: 420px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .heroText {
@@ -29,14 +33,14 @@
 .heroContent button {
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #f2652a;
+  background-color: var(--color-brand);
   border: none;
   color: white;
   cursor: pointer;
 }
 
 .heroContent button:hover {
-  background-color: #f47c4a;
+  background-color: var(--color-brand-hover);
 }
 
 @media screen and (max-width: 768px) {
@@ -49,7 +53,8 @@
   }
 
   .heroImage {
-    max-width: 100%;
+    width: 100%;
+    height: auto;
     margin: 0;
   }
 

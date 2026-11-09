@@ -1,143 +1,42 @@
-import { useState } from "react";
 import classes from "./SeriesFinder.module.css";
 import SeriesFinderForm from "./SeriesFinderForm";
 import SeriesList from "./SeriesList";
 import years from "../../data/years";
+import { useCatalogSearch } from "../../hooks/useCatalogSearch";
+import { useLanguage } from "../../i18n";
 
 function SeriesFinder() {
-  const [loading, setLoading] = useState(false);
-  const [responseData, setResponseData] = useState({});
-  const [resultsFound, setResultsFound] = useState();
-  const [tooManyResults, setTooManyResults] = useState();
-  const [selectedYears, setSelectedYears] = useState();
-  const [searchParam, setSearchParam] = useState();
-  const [selectedPage, setSelectedPage] = useState(1);
-  const [searchParamValidationError, setSearchParamValidationError] =
-    useState(false);
-  const pagesCount = Math.ceil(responseData.totalResults / 10);
+  const { t, language } = useLanguage();
+  const { query, setQuery, yearKey, setYearKey, data, loading, error, page, submit, goToPage, retry } = useCatalogSearch("series");
+  const selectedYears = years.find((year) => String(year.key) === yearKey);
+  const filtered = (data?.Search || []).filter((item) => {
+    if (!selectedYears?.values) return true;
+    const year = Number.parseInt(item.Year, 10);
+    return year >= selectedYears.values.start && year < selectedYears.values.end;
+  });
+  const pagesCount = Math.ceil(Number(data?.totalResults || 0) / 10);
+  const pageResultCount = data?.Search?.length || 0;
 
-  function onSearchParamChangeHandler(event) {
-    setSearchParam(event.target.value);
-  }
-
-  function onSelectedYearsChangeHandler(event) {
-    setSelectedYears(years[event.target.value]);
-  }
-
-  async function onPageChangeHandler(event) {
-    setSelectedPage(event.target.value);
-    fetchResultsFromApi(event.target.value);
-  }
-
-  async function fetchResultsFromApi(page) {
-    clearData();
-    const data = await fetchData(page);
-    const resultsFound = data.Response === "True";
-    if (resultsFound) {
-      setResultsFound(resultsFound);
-      extractResponseData(data);
-    } else {
-      if (data.Error === "Too many results.") {
-        setTooManyResults(true);
-      }
-    }
-    setLoading(false);
-  }
-
-  async function onSubmitHandler(event) {
-    event.preventDefault();
-    if (!validateSearchParam()) {
-      setSearchParamValidationError(true);
-      return;
-    }
-    setSelectedPage(1);
-    fetchResultsFromApi();
-  }
-
-  function validateSearchParam() {
-    return searchParam !== undefined && searchParam.length >= 3;
-  }
-
-  function extractResponseData(data) {
-    let series = data.Search;
-    if (selectedYears && selectedYears.key != 0) {
-      series = series.filter((serie) => {
-        return (
-          serie.Year >= selectedYears.values.start &&
-          serie.Year <= selectedYears.values.end
-        );
-      });
-    }
-    setResponseData({ series: series, totalResults: data.totalResults });
-  }
-
-  function clearData() {
-    setLoading(true);
-    setResultsFound(false);
-    setTooManyResults(false);
-    setSearchParamValidationError(false);
-  }
-
-  async function fetchData(page = 1) {
-    let url = `https://www.omdbapi.com/?apikey=${
-      import.meta.env.VITE_OMDB_API_KEY
-    }&type=series&s=${searchParam}&page=${page}`;
-    const response = await fetch(url);
-    return await response.json();
-  }
-
-  return (
-    <div className={classes.seriesContainer}>
-      <h1>Wyszukiwarka seriali</h1>
-      <SeriesFinderForm
-        onSubmit={onSubmitHandler}
-        onSearchParamChange={onSearchParamChangeHandler}
-        onSelectedYearsChange={onSelectedYearsChangeHandler}
-        validationError={searchParamValidationError}
-      />
-
-      {loading && <h1>Ładowanie...</h1>}
-
-      {!loading && !resultsFound && !tooManyResults && (
-        <h1>Nie znaleziono żadnego serialu.</h1>
-      )}
-      {!loading && !resultsFound && tooManyResults && (
-        <h1>Za dużo wyników. Spróbuj bardziej sprecyzować tytuł.</h1>
-      )}
-
-      {resultsFound && (
-        <>
-          <h2>
-            Wszystkich seriali z podaną frazą: {responseData.totalResults}
-          </h2>
-
-          <SeriesList series={responseData.series} />
-          {pagesCount > 1 && (
-            <div className={classes.pagination}>
-              <label htmlFor="page">Strona: </label>
-              <select
-                name="page"
-                id="page"
-                defaultValue={selectedPage}
-                onChange={(event) => {
-                  onPageChangeHandler(event);
-                }}
-              >
-                {[...Array(pagesCount).keys()].map((pageIndex) => (
-                  <option
-                    key={pageIndex}
-                    value={pageIndex + 1}
-                    defaultValue={pageIndex + 1 === selectedPage}
-                  >
-                    {pageIndex + 1}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-        </>
-      )}
-    </div>
-  );
+  return <main className={classes.seriesContainer} aria-busy={loading}>
+    <h1>{t("Wyszukiwarka seriali")}</h1>
+    <SeriesFinderForm query={query} yearKey={yearKey} onSubmit={submit} onSearchParamChange={(event) => setQuery(event.target.value)} onSelectedYearsChange={(event) => setYearKey(event.target.value)} validationError={Boolean(error && query.trim().length < 3)} />
+    {loading && <p className={classes.status} role="status">{t("Szukam seriali…")}</p>}
+    {!loading && error && <div className={classes.error} role="alert"><p>{error}</p>{query.trim().length >= 3 && <button type="button" onClick={retry}>Spróbuj ponownie</button>}</div>}
+    {!loading && !error && !data && !query && <p className={classes.status}>{t("Wpisz tytuł lub użyj wyszukiwarki w nagłówku.")}</p>}
+    {!loading && !error && data && filtered.length === 0 && <p className={classes.status}>Na tej stronie nie ma seriali w wybranym przedziale lat. Zmień filtr lub przejdź dalej.</p>}
+    {data && !error && !loading && <>
+      <p className={classes.resultSummary}>
+        {selectedYears?.values
+          ? `Łącznie ${data.totalResults} tytułów dla tej frazy. Na stronie ${page}: ${filtered.length} z ${pageResultCount} mieści się w zakresie ${selectedYears.text}. Filtr dotyczy bieżącej strony; stronicowanie obejmuje wszystkie wyniki frazy.`
+          : `Łącznie ${data.totalResults} tytułów dla tej frazy. Na stronie ${page}: ${pageResultCount} tytułów.`}
+      </p>
+      {filtered.length > 0 && <><h2>{t("Wyniki wyszukiwania")}</h2><SeriesList series={filtered} /></>}
+      {pagesCount > 1 && <nav className={classes.pagination} aria-label={t("Stronicowanie wyników")}>
+        <button type="button" disabled={page <= 1 || loading} onClick={() => goToPage(page - 1)}>{t("Poprzednia")}</button>
+        <span aria-live="polite">{language === "en" ? `Page ${page} of ${pagesCount}` : `Strona ${page} z ${pagesCount}`}</span>
+        <button type="button" disabled={page >= pagesCount || loading} onClick={() => goToPage(page + 1)}>{t("Następna")}</button>
+      </nav>}
+    </>}
+  </main>;
 }
 export default SeriesFinder;

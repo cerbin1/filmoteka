@@ -1,24 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
 import classes from "./RankingMovieDetails.module.css";
 import { Link } from "react-router-dom";
+import { fetchOmdb, formatField } from "../../utils/omdb";
+import { useLanguage } from "../../i18n";
 
 function RankingMovieDetails({ id, number }) {
+  const { t } = useLanguage();
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = useCallback(
     async (controller) => {
       try {
-        const url = `https://www.omdbapi.com/?apikey=${
-          import.meta.env.VITE_OMDB_API_KEY
-        }&i=${id}`;
-        const response = await fetch(url, {
-          signal: controller.signal,
-        });
-        const responseJson = await response.json();
+        const responseJson = await fetchOmdb({ i: id }, controller.signal);
         setData(responseJson);
       } catch (error) {
-        console.log(error);
+        if (!controller.signal.aborted) setData({ Error: error.message });
       } finally {
         if (!controller.signal.aborted) {
           setIsLoading(false);
@@ -36,10 +33,10 @@ function RankingMovieDetails({ id, number }) {
 
   return (
     <>
-      {isLoading && <p>Ładowanie...</p>}
+      {isLoading && <p>{t("Ładowanie...")}</p>}
       {!isLoading && (
         <div className={classes.movieListItem}>
-          {data.Poster !== "N/A" && (
+          {data.Poster && data.Poster !== "N/A" && (
             <img
               src={data.Poster}
               className={classes.moviePoster}
@@ -48,10 +45,10 @@ function RankingMovieDetails({ id, number }) {
           )}
           <div className={classes.movieInfo}>
             <h2>
-              <span className={classes.number}>{number}.</span> {data.Title}
+                <span className={classes.number}>{number}.</span> {formatField(data.Title, t("Nie udało się pobrać filmu"))}
             </h2>
-            <p>Rok: {data.Year}</p>
-            <Link to={`/movies/${data.imdbID}`}>Szczegóły</Link>
+            <p>{t("Rok: ")}{formatField(data.Year)}</p>
+            {data.imdbID && <Link to={`/movies/${data.imdbID}`}>{t("Szczegóły")}</Link>}
           </div>
         </div>
       )}

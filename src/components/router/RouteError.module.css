@@ -1,0 +1,2 @@
+.container { max-width: 720px; margin: 3rem auto; padding: 2rem; text-align: center; background: var(--color-surface); border-radius: 12px; }
+.container a { display: inline-block; margin-top: 1rem; padding: .75rem 1.25rem; color: var(--color-surface); background: var(--color-brand); border-radius: 6px; text-decoration: none; }

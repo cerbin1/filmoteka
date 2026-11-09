@@ -9,59 +9,62 @@
 
 .formGroup {
   padding: 1rem 0;
-  width: 50%;
+  width: min(90%, 520px);
   margin: 0 auto;
 }
 
 .formGroup select {
   font-size: inherit;
   padding: 0.5rem;
-  border: 1px solid #f2652a;
+  border: 1px solid var(--color-brand);
   border-radius: 5px;
 }
 
 .formGroup option {
   padding: 1rem;
   margin: 1rem;
-  border: 1px solid #f2652a;
+  border: 1px solid var(--color-brand);
 }
 
 .formGroup option:checked {
-  background-color: #f2652a;
+  background-color: var(--color-brand);
 }
 
 .searchInput {
   font-size: inherit;
   padding: 0.5rem;
   border-radius: 5px;
-  border: 1px solid #f2652a;
+  border: 1px solid var(--color-brand);
 }
 
 .searchInput:focus {
   outline: none;
-  border: 1px solid #f2652a;
+  border: 1px solid var(--color-brand);
 }
 
+.searchInput:focus-visible, .formGroup select:focus-visible, .searchButton:focus-visible { outline: 3px solid var(--color-text); outline-offset: 2px; }
+
 .searchButton {
+  color: #fff;
   font-size: inherit;
   padding: 0.5rem 1rem;
   border-radius: 5px;
-  border: 1px solid #f2652a;
+  border: 1px solid var(--color-brand);
   cursor: pointer;
-  background-color: #f2652a;
+  background-color: var(--color-brand);
   width: 50%;
 }
 
 .searchButton:hover {
-  background-color: #f47c4a;
+  background-color: var(--color-brand-hover);
 }
 
 .searchInputError {
-  border: 3px solid red;
+  border: 2px solid var(--color-error);
 }
 
 .searchInputErrorMessage {
-  color: red;
+  color: var(--color-error);
 }
 
 @media screen and (max-width: 768px) {

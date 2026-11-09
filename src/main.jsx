@@ -11,48 +11,27 @@ import SeriesDetails from "./components/series/SeriesDetails";
 import { loader as movieDetailsLoader } from "./components/loaders/MovieDetailsLoader";
 import Ranking from "./components/ranking/Ranking";
 import Account from "./components/account/Account";
+import RouteError from "./components/router/RouteError";
+import { LanguageProvider } from "./i18n";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
+    errorElement: <RouteError />,
     children: [
-      {
-        path: "/",
-        element: <HeroContent />,
-      },
-      {
-        path: "/movies",
-        element: <MoviesFinder />,
-      },
-      {
-        path: "/movies/:id",
-        element: <MovieDetails />,
-        loader: movieDetailsLoader,
-      },
-      {
-        path: "/series",
-        element: <SeriesFinder />,
-      },
-      {
-        path: "/series/:id",
-        element: <SeriesDetails />,
-        loader: movieDetailsLoader,
-      },
-      {
-        path: "/ranking",
-        element: <Ranking />,
-      },
-      {
-        path: "/account",
-        element: <Account />,
-      },
+      { index: true, element: <HeroContent /> },
+      { path: "movies", element: <MoviesFinder /> },
+      { path: "movies/:id", element: <MovieDetails />, loader: movieDetailsLoader, errorElement: <RouteError /> },
+      { path: "series", element: <SeriesFinder /> },
+      { path: "series/:id", element: <SeriesDetails />, loader: movieDetailsLoader, errorElement: <RouteError /> },
+      { path: "ranking", element: <Ranking /> },
+      { path: "account", element: <Account /> },
+      { path: "*", element: <RouteError /> },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router}></RouterProvider>
-  </React.StrictMode>
+  <React.StrictMode><LanguageProvider><RouterProvider router={router} /></LanguageProvider></React.StrictMode>
 );

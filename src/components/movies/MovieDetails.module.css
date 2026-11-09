@@ -6,23 +6,23 @@
 }
 
 .title {
-  border-bottom: 2px solid #f2652a;
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   text-align: left;
   font-size: 1.5rem;
 }
 
 .title h1 {
-  color: #f47c4a;
+  color: var(--color-brand-hover);
   cursor: default;
 }
 
 .section {
-  border-bottom: 2px solid #f2652a;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .section h2 {
-  color: #f47c4a;
+  color: var(--color-brand-hover);
   cursor: default;
 }
 
@@ -35,9 +35,11 @@
   max-width: 200px;
 }
 
+.posterFallback { margin: 1rem; width: 200px; min-height: 290px; display: grid; place-items: center; background: var(--color-page); color: var(--color-muted); font-size: 1rem; flex: 0 0 auto; }
+
 @media screen and (max-width: 768px) {
   .container {
-    width: 100%;
+    width: min(100% - 2rem, 760px);
   }
 
   .title {
@@ -53,4 +55,5 @@
   .poster {
     margin: 0 auto 0.5rem auto;
   }
+  .posterFallback { margin: .5rem auto; }
 }

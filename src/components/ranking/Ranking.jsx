@@ -1,5 +1,6 @@
 import classes from "./Ranking.module.css";
 import RankingMovieDetails from "./RankingMovieDetails";
+import { useLanguage } from "../../i18n";
 
 const top10MoviesIds = [
   "tt0111161",
@@ -15,9 +16,10 @@ const top10MoviesIds = [
 ];
 
 function Ranking() {
+  const { t } = useLanguage();
   return (
     <div className={classes.container}>
-      <h1>Top 10 filmów</h1>
+      <h1>{t("Top 10 filmów")}</h1>
       {top10MoviesIds.map((id) => (
         <RankingMovieDetails
           key={id}

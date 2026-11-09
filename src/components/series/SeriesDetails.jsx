@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import classes from "./SeriesDetails.module.css";
+import { formatField } from "../../utils/omdb";
 
 function SeriesDetails() {
   const details = useLoaderData();
@@ -8,62 +9,62 @@ function SeriesDetails() {
     <div className={classes.container}>
       <div className={classes.title}>
         <div>
-          <h1>{details.Title}</h1>
+          <h1>{formatField(details.Title, "Szczegóły serialu")}</h1>
           <p>
-            <strong>Fabuła:</strong> {details.Plot}
+            <strong>Fabuła:</strong> {formatField(details.Plot)}
           </p>
         </div>
-        {details.Poster && (
+        {details.Poster && details.Poster !== "N/A" ? (
           <img
             src={details.Poster}
             className={classes.poster}
-            alt="Series poster"
+            alt={`Plakat serialu ${details.Title}`}
           />
-        )}
+        ) : <div className={classes.posterFallback} aria-label="Brak plakatu">Brak plakatu</div>}
       </div>
       <div className={classes.section}>
         <h2>Szczegóły</h2>
         <p>
           <strong>Data wydania: </strong>
-          {details.Released}
+          {formatField(details.Released)}
         </p>
         <p>
           <strong>Czas trwania: </strong>
-          {details.Runtime}
+          {formatField(details.Runtime)}
         </p>
         <p>
           <strong>Gatunek: </strong>
-          {details.Genre}
+          {formatField(details.Genre)}
         </p>
         <p>
           <strong>Jezyk: </strong>
-          {details.Language}
+          {formatField(details.Language)}
         </p>
       </div>
       <div className={classes.section}>
         <h2>Oceny użytkowników</h2>
         <p>
           <strong>Ocena IMDB: </strong>
-          {details.imdbRating}
+          {formatField(details.imdbRating)}
         </p>
         <p>
           <strong>Liczba głosów: </strong>
-          {details.imdbVotes}
+          {formatField(details.imdbVotes)}
         </p>
       </div>
       <div className={classes.section}>
         <h2>Ekipa filmowa</h2>
         <p>
           <strong>Reżyser: </strong>
-          {details.Director}
+          {formatField(details.Director)}
         </p>
         <p>
           <strong>Scenariusz: </strong>
-          {details.Writer}
+          {formatField(details.Writer)}
         </p>
         <p>
           <strong>Aktorzy: </strong>
-          {details.Actors}
+          {formatField(details.Actors)}
         </p>
       </div>
     </div>

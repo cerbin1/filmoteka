@@ -1,13 +1,18 @@
 .movieListItem {
   display: flex;
-  border: 1px solid #f2652a;
-  border-radius: 5px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background-color: var(--color-surface);
+  box-shadow: 0 2px 8px rgb(31 41 55 / 6%);
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
   padding: 1rem 2rem;
   margin: 1rem 0;
   text-align: left;
   cursor: default;
   font-size: 1.2rem;
 }
+
+.movieListItem:hover { border-color: var(--color-brand); box-shadow: 0 8px 24px rgb(31 41 55 / 10%); transform: translateY(-2px); }
 
 .moviePoster {
   width: 200px;
@@ -18,7 +23,7 @@
 }
 
 .movieInfo h2:hover {
-  text-shadow: 2px 2px 5px #f2652a;
+  color: var(--color-brand);
 }
 
 .movieInfo {
@@ -26,7 +31,7 @@
 }
 
 .movieInfo p {
-  color: grey;
+  color: var(--color-muted);
   margin-top: 0;
 }
 
@@ -37,11 +42,11 @@
   color: white;
   text-decoration: none;
   border-radius: 5px;
-  background-color: #f2652a;
+  background-color: var(--color-brand);
 }
 
 .movieInfo a:hover {
-  background-color: #f47c4a;
+  background-color: var(--color-brand-hover);
 }
 
 @media screen and (max-width: 768px) {
