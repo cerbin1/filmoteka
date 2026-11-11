@@ -1,26 +1,26 @@
 # Filmoteka
 
-Polskojęzyczna aplikacja frontendowa do wyszukiwania filmów i seriali oraz przeglądania szczegółów i rankingu. Dane pobierane są z [OMDb API](https://www.omdbapi.com/).
+A multilingual frontend application for searching movies and TV series and browsing their details and rankings, available in Polish and English. Data is fetched from the [OMDb API](https://www.omdbapi.com/).
 
-## Funkcje
+## Features
 
-- Wyszukiwanie filmów i seriali po tytule, także z wyszukiwarki w nagłówku.
-- Filtrowanie wyników według przedziału lat i paginacja.
-- Strony szczegółów tytułów oraz statyczny ranking 10 filmów.
-- Czytelne stany ładowania, błędu, braku wyników i brakujących danych.
-- Aplikacja działa po stronie przeglądarki; konto i funkcje użytkownika nie są dostępne.
+- Search for movies and TV series by title, including from the header search bar.
+- Filter results by year range and browse pages of results.
+- Title detail pages and a static top 10 movie ranking.
+- Clear loading, error, no-results, and missing-data states.
+- Runs in the browser; accounts and user features are not available.
 
-## Uruchomienie
+## Getting started
 
-Wymagany Node.js 20.19+ lub 22.12+.
+Requires Node.js 20.19+ or 22.12+.
 
-1. Zainstaluj zależności: `npm install`
-2. Utwórz plik `.env.local` w katalogu głównym i ustaw klucz OMDb:
-   `VITE_OMDB_API_KEY=twój_klucz_api`
-3. Uruchom serwer developerski: `npm run dev`
+1. Install dependencies: `npm install`
+2. Create a `.env.local` file in the project root and set your OMDb API key:
+   `VITE_OMDB_API_KEY=your_api_key`
+3. Start the development server: `npm run dev`
 
-Dostępne polecenia: `npm run build`, `npm run preview`, `npm run lint`.
+Available commands: `npm run build`, `npm run preview`, `npm run lint`.
 
-## Ograniczenia
+## Limitations
 
-Klucz OMDb jest używany w przeglądarce, więc jest widoczny dla użytkowników aplikacji. Nie umieszczaj w nim sekretów używanych do innych usług. Dane wyników i rankingu pochodzą z OMDb; ranking jest statyczną listą identyfikatorów IMDb. Filtr roku sprawdza tylko aktualnie widoczną stronę 10 wyników i nie zmienia łącznej liczby wyników zwróconej przez API.
+The OMDb API key is used in the browser, so it is visible to application users. Do not use a key that contains secrets for other services. Search results and ranking data come from OMDb; the ranking is a static list of IMDb IDs. The year filter only checks the currently displayed page of 10 results and does not change the total number of results returned by the API.
