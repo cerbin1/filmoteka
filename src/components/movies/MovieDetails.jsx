@@ -1,70 +1,72 @@
 import { useLoaderData } from "react-router-dom";
 import classes from "./MovieDetails.module.css";
 import { formatField } from "../../utils/omdb";
+import { useLanguage } from "../../i18n";
 
 function MovieDetails() {
   const details = useLoaderData();
+  const { t } = useLanguage();
 
   return (
     <div className={classes.container}>
       <div className={classes.title}>
         <div>
-          <h1>{formatField(details.Title, "Szczegóły filmu")}</h1>
+          <h1>{formatField(details.Title, t("Szczegóły filmu"))}</h1>
           <p>
-            <strong>Fabuła:</strong> {formatField(details.Plot)}
+            <strong>{t("Fabuła:")}</strong> {formatField(details.Plot, t("Brak danych"))}
           </p>
         </div>
         {details.Poster && details.Poster !== "N/A" ? (
           <img
             src={details.Poster}
             className={classes.poster}
-            alt={`Plakat filmu ${details.Title}`}
+            alt={`${t("Plakat filmu ")}${details.Title}`}
           />
-        ) : <div className={classes.posterFallback} aria-label="Brak plakatu">Brak plakatu</div>}
+        ) : <div className={classes.posterFallback} aria-label={t("Brak plakatu")}>{t("Brak plakatu")}</div>}
       </div>
       <div className={classes.section}>
-        <h2>Szczegóły</h2>
+        <h2>{t("Szczegóły sekcji")}</h2>
         <p>
-          <strong>Data wydania: </strong>
-          {formatField(details.Released)}
+          <strong>{t("Data wydania: ")}</strong>
+          {formatField(details.Released, t("Brak danych"))}
         </p>
         <p>
-          <strong>Czas trwania: </strong>
-          {formatField(details.Runtime)}
+          <strong>{t("Czas trwania: ")}</strong>
+          {formatField(details.Runtime, t("Brak danych"))}
         </p>
         <p>
-          <strong>Gatunek: </strong>
-          {formatField(details.Genre)}
+          <strong>{t("Gatunek: ")}</strong>
+          {formatField(details.Genre, t("Brak danych"))}
         </p>
         <p>
-          <strong>Jezyk: </strong>
-          {formatField(details.Language)}
-        </p>
-      </div>
-      <div className={classes.section}>
-        <h2>Oceny użytkowników</h2>
-        <p>
-          <strong>Ocena IMDB: </strong>
-          {formatField(details.imdbRating)}
-        </p>
-        <p>
-          <strong>Liczba głosów: </strong>
-          {formatField(details.imdbVotes)}
+          <strong>{t("Język: ")}</strong>
+          {formatField(details.Language, t("Brak danych"))}
         </p>
       </div>
       <div className={classes.section}>
-        <h2>Ekipa filmowa</h2>
+        <h2>{t("Oceny użytkowników")}</h2>
         <p>
-          <strong>Reżyser: </strong>
-          {formatField(details.Director)}
+          <strong>{t("Ocena IMDB: ")}</strong>
+          {formatField(details.imdbRating, t("Brak danych"))}
         </p>
         <p>
-          <strong>Scenariusz: </strong>
-          {formatField(details.Writer)}
+          <strong>{t("Liczba głosów: ")}</strong>
+          {formatField(details.imdbVotes, t("Brak danych"))}
+        </p>
+      </div>
+      <div className={classes.section}>
+        <h2>{t("Ekipa filmowa")}</h2>
+        <p>
+          <strong>{t("Reżyser: ")}</strong>
+          {formatField(details.Director, t("Brak danych"))}
         </p>
         <p>
-          <strong>Aktorzy: </strong>
-          {formatField(details.Actors)}
+          <strong>{t("Scenariusz: ")}</strong>
+          {formatField(details.Writer, t("Brak danych"))}
+        </p>
+        <p>
+          <strong>{t("Aktorzy: ")}</strong>
+          {formatField(details.Actors, t("Brak danych"))}
         </p>
       </div>
     </div>
